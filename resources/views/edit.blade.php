@@ -23,9 +23,20 @@
 @section('title', 'edit.blade.php')
 
 @section('content')
+@if (count($errors) > 0)
+<p>入力に誤りがあります</p>
+@endif
 <form action="/edit" method="POST">
   <table>
     @csrf
+    @error('id')
+    <tr>
+        <th style="background-color: red">ERROR</th>
+        <td>
+            {{$errors->first('id')}}
+        </td>
+    </tr>
+    @enderror  
     <tr>
       <th>
         id
@@ -34,6 +45,14 @@
         <input type="text" name="id" value="{{$form->id}}">
       </td>
     </tr>
+    @error('name')
+    <tr>
+        <th style="background-color: red">ERROR</th>
+        <td>
+            {{$errors->first('name')}}
+        </td>
+    </tr>
+    @enderror  
     <tr>
       <th>
         name
@@ -42,6 +61,14 @@
         <input type="text" name="name" value="{{$form->name}}">
       </td>
     </tr>
+    @error('age')
+    <tr>
+        <th style="background-color: red">ERROR</th>
+        <td>
+            {{$errors->first('age')}}
+        </td>
+    </tr>
+    @enderror  
     <tr>
       <th>
         age
@@ -50,6 +77,14 @@
         <input type="text" name="age" value="{{$form->age}}">
       </td>
     </tr>
+    @error('nationality')
+    <tr>
+        <th style="background-color: red">ERROR</th>
+        <td>
+            {{$errors->first('nationality')}}
+        </td>
+    </tr>
+    @enderror  
     <tr>
       <th>
         nationality
