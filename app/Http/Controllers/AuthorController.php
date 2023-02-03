@@ -30,6 +30,23 @@ class AuthorController extends Controller
         return redirect('/');
     }
 
+    // 追加：ここから
+    public function find()
+    {
+    return view('find', ['input' => '']);
+    }
+
+    public function search(Request $request)
+    {
+    $author = Author::where('name', $request->input)->first();
+    $param = [
+    'input' => $request->input,
+    'author' => $author
+    ];
+    return view('find', $param);
+    }
+    // 追加：ここまで
+    
     // データ編集ページの表示
     public function edit(Request $request){
         $author = Author::find($request->id);
@@ -63,5 +80,16 @@ class AuthorController extends Controller
     {
     return view('verror');
     }
+
+    // 追記：ここから
+
+    public function bind(Author $author)
+    {
+    $data = [
+        'author'=>$author,
+    ];
+    return view('author.binds', $data);
+    }
+    // 追記：ここまで
 
 }
