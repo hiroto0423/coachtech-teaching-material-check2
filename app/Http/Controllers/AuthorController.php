@@ -14,7 +14,7 @@ class AuthorController extends Controller
     {
         $authors = Author::all();
         return view('index', ['authors' => $authors]);
-   }
+    }
 
    // データ追加用ページの表示
     public function add()
