@@ -18,4 +18,11 @@ class Author extends Model
     return $txt;
   }
   // 追記：ここまで
+
+  public function book(){
+    return $this->hasOne('App\Models\Book');
+  }
+  public function books(){
+    return $this->hasMany('App\Models\Book');
+    }
 }
