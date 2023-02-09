@@ -38,5 +38,11 @@ class AuthorsTableSeeder extends Seeder
       'nationality' => 'Chinese'
     ];
     Author::create($param);
+    $param = [
+      'name' => 'taro',
+      'age' => 55,
+      'nationality' => 'Japanese'
+    ];
+    Author::create($param);
   }
 }
