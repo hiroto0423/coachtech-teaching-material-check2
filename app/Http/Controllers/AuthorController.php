@@ -13,10 +13,8 @@ class AuthorController extends Controller
     // データ一覧ページの表示
     public function index()
     {
-    $user = Auth::user();
-    $authors = Author::paginate(4);
-    $param = ['authors' => $authors, 'user' =>$user];
-    return view('index', $param);
+        $authors = Author::Paginate(4);
+        return view('index', ['authors' => $authors]);
     }
 
     // データ追加用ページの表示
