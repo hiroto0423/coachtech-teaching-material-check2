@@ -6,14 +6,17 @@ use Illuminate\Http\Request;
 use App\Models\Author;
 // フォームリクエストの読み込み
 use App\Http\Requests\AuthorRequest;
+use Illuminate\Support\Facades\Auth;
 
 class AuthorController extends Controller
 {
     // データ一覧ページの表示
     public function index()
     {
-        $authors = Author::all();
-        return view('index', ['authors' => $authors]);
+    $user = Auth::user();
+    $authors = Author::paginate(4);
+    $param = ['authors' => $authors, 'user' =>$user];
+    return view('index', $param);
     }
 
     // データ追加用ページの表示
@@ -116,5 +119,23 @@ class AuthorController extends Controller
         'content' => $content . 'と入力しましたね'
     ];
     return view('middleware', $text);
+    }
+    public function check(Request $request)
+    {
+    $text = ['text' => 'ログインして下さい。'];
+    return view('auth', $text);
+    }
+
+    public function checkUser(Request $request)
+    {
+    $email = $request->email;
+    $password = $request->password;
+    if (Auth::attempt(['email' => $email,
+        'password' => $password])) {
+        $text =   Auth::user()->name . 'さんがログインしました';
+    } else {
+        $text = 'ログインに失敗しました';
+    }
+    return view('auth', ['text' => $text]);
     }
 }
