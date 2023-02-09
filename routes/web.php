@@ -4,6 +4,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\SessionController;
+use App\Models\Product;//上部に追加
+
+Route::get('uuid',function() {
+  $products = Product::all();
+  foreach($products as $product){
+    echo $product.'<br>';
+  }
+});
 
 Route::get('/home', [AuthorController::class, 'index']);
 Route::get('/add', [AuthorController::class, 'add']);
