@@ -24,6 +24,7 @@ Route::get('/relation', [AuthorController::class, 'relate']);
 
 Route::get('/session', [SessionController::class, 'getSes']);
 Route::post('/session', [SessionController::class, 'postSes']);
+Route::get('/back',[SessionController::class, 'backHome']);
 
 Route::get('/auth', [AuthorController::class,'check']);
 Route::post('/auth', [AuthorController::class,'checkUser']);
