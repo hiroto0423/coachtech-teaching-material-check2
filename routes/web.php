@@ -5,6 +5,9 @@ use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\SessionController;
 use App\Models\Product;//上部に追加
+use App\Http\Controllers\TimeController;
+
+Route::get('/time', [TimeController::class, 'index']);
 
 Route::get('uuid',function() {
   $products = Product::all();
